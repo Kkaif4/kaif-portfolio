@@ -1,5 +1,3 @@
-// src/data/projects.ts
-
 import { Project } from "@/types/project.type";
 
 export const projects: Project[] = [
@@ -9,7 +7,7 @@ export const projects: Project[] = [
       "Full-stack healthcare platform for secure diet/workout plan generation...",
     tags: ["MongoDB", "Express", "React", "Node.js", "Gemini API"],
     github: "https://github.com",
-    demo: "https://demo.com",
+    demo: "https://health-care-henna-alpha.vercel.app",
     color: "#10b981",
     shadow: "rgba(16, 185, 129, 0.3)",
   },
@@ -18,7 +16,7 @@ export const projects: Project[] = [
     description: "High-performance Next.js landing page with Zod validation...",
     tags: ["Next.js", "Zod", "reCAPTCHA v3", "TypeScript"],
     github: "https://github.com",
-    demo: "https://demo.com",
+    demo: "https://www.rhposs.com",
     color: "#f7b40f",
     shadow: "rgba(247, 180, 15, 0.3)",
   },
@@ -38,7 +36,7 @@ export const projects: Project[] = [
       "AI-powered requirement analysis platform with automated Word document generation...",
     tags: ["MERN", "Gemini API", "Cloudinary", "AI"],
     github: "https://github.com",
-    demo: "https://demo.com",
+    demo: "https://reqforgeai.vercel.app",
     color: "#3b82f6",
     shadow: "rgba(59, 130, 246, 0.3)",
   },

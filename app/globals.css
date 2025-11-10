@@ -67,25 +67,75 @@
 
 /* 4. Custom utilities */
 @layer utilities {
-  /* These utilities now match your --primary color perfectly */
+  /* 🌿 Emerald Glow Utilities — Modern Interactive Redesign */
+
+  /* --- Base Glow (soft, subtle ambient effect) --- */
   .glow-emerald {
-    box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.35),
+      0 0 40px rgba(16, 185, 129, 0.15) inset;
+    transition: all 0.35s ease;
   }
 
+  /* --- Large Glow (used on hover / focus states) --- */
   .glow-emerald-lg {
-    box-shadow: 0 0 40px rgba(16, 185, 129, 0.4);
+    box-shadow: 0 0 30px rgba(16, 185, 129, 0.55),
+      0 0 80px rgba(16, 185, 129, 0.25);
+    transition: all 0.4s ease;
   }
 
+  /* --- Animated Pulse Glow --- */
+  @keyframes emeraldPulse {
+    0%,
+    100% {
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.35),
+        0 0 40px rgba(16, 185, 129, 0.15) inset;
+    }
+    50% {
+      box-shadow: 0 0 30px rgba(16, 185, 129, 0.6),
+        0 0 60px rgba(16, 185, 129, 0.25) inset;
+    }
+  }
+
+  .animate-glow-emerald {
+    animation: emeraldPulse 3s ease-in-out infinite;
+  }
+
+  /* --- Text Gradient (with shimmer effect) --- */
   .text-gradient-emerald {
-    background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+    background: linear-gradient(135deg, #10b981 0%, #34d399 40%, #6ee7b7 100%);
+    background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    transition: background-position 1s ease;
   }
 
+  .text-gradient-emerald:hover {
+    background-position: right center; /* smooth shimmer */
+  }
+
+  /* --- Border Glow (interactive on hover) --- */
   .border-glow {
-    border-color: var(--primary);
-    /* Updated this RGBA to match the new --primary color */
-    box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+    border-color: #10b981;
+    box-shadow: 0 0 12px rgba(16, 185, 129, 0.5),
+      inset 0 0 4px rgba(16, 185, 129, 0.25);
+    transition: all 0.3s ease-in-out;
+  }
+
+  .border-glow:hover {
+    box-shadow: 0 0 25px rgba(16, 185, 129, 0.6),
+      inset 0 0 8px rgba(16, 185, 129, 0.35);
+    transform: scale(1.02);
+  }
+
+  /* --- Optional utility: glowing background (for subtle panels) --- */
+  .bg-glass-emerald {
+    background: linear-gradient(
+      145deg,
+      rgba(16, 185, 129, 0.1),
+      rgba(13, 13, 13, 0.8)
+    );
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(16, 185, 129, 0.2);
   }
 }

@@ -1,9 +1,9 @@
 // src/components/ProjectModal.tsx
 "use client";
 
-import { Project } from "@/types/project.type";
+import { Project } from "@/types/project.type"; // Corrected import to "@/types/project"
 import { motion } from "framer-motion";
-import { Code2, ExternalLink, Github, X } from "lucide-react";
+import { Code2, ExternalLink, Github, X } from "lucide-react"; // X icon is no longer used, but kept for consistency
 
 interface ProjectModalProps {
   project: Project;
@@ -23,9 +23,24 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1, transition: { delay: 0.1 } }}
         exit={{ scale: 0.9, opacity: 0 }}
-        className="relative p-6 bg-card border border-border rounded-xl w-[90%] max-w-2xl"
+        className="relative p-6 md:p-8 bg-card border border-border rounded-xl w-[90%] max-w-2xl"
         onClick={(e) => e.stopPropagation()}
+        // --- FIX: Added subtle glossy effect to the modal itself ---
+        style={{
+          boxShadow: `0 0 40px ${project.shadow}`, // Using project shadow for emphasis
+          background: `linear-gradient(145deg, ${project.color}1A, #0d0d0d80)`, // Subtle gradient
+          backdropFilter: "blur(8px)", // Blurring the background slightly
+        }}
       >
+        <motion.button
+          className="absolute top-4 right-4 text-muted-foreground hover:text-foreground"
+          onClick={onClose}
+          whileHover={{ scale: 1.1, rotate: 90 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          <X />
+        </motion.button>
+
         <motion.div
           variants={{
             hidden: { opacity: 0 },
@@ -37,7 +52,6 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
           initial="hidden"
           animate="show"
         >
-          {/* ... (All your modal content remains the same) ... */}
           <div className="flex items-start justify-between mb-4">
             <motion.div
               variants={{
@@ -50,40 +64,7 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
               <Code2 className="w-6 h-6" style={{ color: project.color }} />
             </motion.div>
 
-            <motion.div
-              variants={{
-                hidden: { y: 20, opacity: 0 },
-                show: { y: 0, opacity: 1 },
-              }}
-              className="flex items-center gap-2"
-            >
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <motion.div
-                  whileHover={{ scale: 1.2 }}
-                  className="p-2 hover:bg-muted rounded-lg transition-colors"
-                >
-                  <Github className="w-5 h-5" />
-                </motion.div>
-              </a>
-              {project.demo && (
-                <a
-                  href={project.demo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <motion.div
-                    whileHover={{ scale: 1.2 }}
-                    className="p-2 hover:bg-muted rounded-lg transition-colors"
-                  >
-                    <ExternalLink className="w-5 h-5" />
-                  </motion.div>
-                </a>
-              )}
-            </motion.div>
+            {/* --- Removed the old GitHub/Demo links from the header --- */}
           </div>
 
           <motion.h3
@@ -91,7 +72,7 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
               hidden: { y: 20, opacity: 0 },
               show: { y: 0, opacity: 1 },
             }}
-            className="text-2xl font-bold mb-3"
+            className="text-2xl md:text-3xl font-bold mb-3"
             style={{ color: project.color }}
           >
             {project.title}
@@ -111,7 +92,7 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
               hidden: { y: 20, opacity: 0 },
               show: { y: 0, opacity: 1 },
             }}
-            className="flex flex-wrap gap-2"
+            className="flex flex-wrap gap-2 mb-6"
           >
             {project.tags.map((tag, idx) => (
               <span
@@ -129,16 +110,61 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
           </motion.div>
         </motion.div>
 
-        {/* --- FIX: Added new close button at the bottom center --- */}
-        <div className="flex justify-center mt-6">
-          <motion.button
-            className="px-6 py-2 bg-primary text-primary-foreground rounded-full font-semibold"
-            onClick={onClose}
-            whileHover={{ scale: 1.05 }}
+        {/* --- FIX: New Action Buttons (GitHub, Demo, Close) at the bottom --- */}
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-8">
+          {/* GitHub Button */}
+          <motion.a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            variants={{
+              hidden: { y: 20, opacity: 0 },
+              show: { y: 0, opacity: 1, transition: { delay: 0.05 } },
+            }}
+            className="flex items-center gap-2 px-6 py-2 rounded-full font-semibold transition-all duration-200 ease-in-out"
+            style={{
+              backgroundColor: project.color + "2A", // Slightly more opaque
+              color: project.color,
+              border: `1px solid ${project.color}`,
+            }}
+            whileHover={{
+              scale: 1.05,
+              backgroundColor: project.color, // Full color on hover
+              color: "#FFF", // White text on hover
+            }}
             whileTap={{ scale: 0.95 }}
           >
-            Close
-          </motion.button>
+            <Github className="w-5 h-5" />
+            View Code
+          </motion.a>
+
+          {/* Live Demo Button (conditionally rendered) */}
+          {project.demo && (
+            <motion.a
+              href={project.demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              variants={{
+                hidden: { y: 20, opacity: 0 },
+                show: { y: 0, opacity: 1, transition: { delay: 0.1 } },
+              }}
+              className="flex items-center gap-2 px-6 py-2 rounded-full font-semibold transition-all duration-200 ease-in-out"
+              style={{
+                backgroundColor: project.color + "2A",
+                color: project.color,
+                border: `1px solid ${project.color}`,
+              }}
+              whileHover={{
+                scale: 1.05,
+                backgroundColor: project.color,
+                color: "#FFF",
+              }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <ExternalLink className="w-5 h-5" />
+              Live Demo
+            </motion.a>
+          )}
         </div>
       </motion.div>
     </motion.div>

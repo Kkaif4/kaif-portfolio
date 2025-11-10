@@ -35,12 +35,11 @@ export const Experience = () => {
       color: "#10b981", // Your --primary green
       shadow: "rgba(16, 185, 129, 0.3)",
     },
-    // --- 2. Added a second entry to show the "tree" ---
     {
-      company: "Freelance",
+      company: "Self Employed",
       role: "Backend Developer",
-      type: "Remote",
-      period: "Jan 2024 - May 2025",
+      type: "WFH",
+      period: "Apr 2023 - May 2025",
       responsibilities: [
         "Developed custom REST APIs for small businesses.",
         "Integrated third-party services like Stripe and SendGrid.",
@@ -185,4 +184,3 @@ export const Experience = () => {
     </section>
   );
 };
-    
