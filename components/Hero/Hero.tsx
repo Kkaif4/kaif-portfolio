@@ -94,7 +94,7 @@ export const Hero = () => {
           transition={{ delay: 1.2, duration: 0.8 }}
           className="text-lg md:text-xl text-muted-foreground max-w-md leading-relaxed"
         >
-          Building systems where creativity meets precision — scalable APIs,
+          Building systems where creativity meets precision, scalable APIs,
           elegant UIs, and intelligent applications that adapt and learn.
         </motion.p>
 
