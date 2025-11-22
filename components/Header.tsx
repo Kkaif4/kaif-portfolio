@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Download } from "lucide-react";
-import { useNavStore } from "@/store/navStore";
 
 export const Header = () => {
-  const { activeSection } = useNavStore();
   const [scrolled, setScrolled] = useState(false);
   // const [isHovered, setIsHovered] = useState(false); // No longer needed
 
@@ -44,43 +42,6 @@ export const Header = () => {
           >
             MKS.
           </motion.div>
-
-          <div className="hidden md:flex items-center gap-1 bg-card/50 rounded-full p-1 relative">
-            {navItems.map((item) => (
-              <motion.a
-                key={item.id}
-                href={`#${item.id}`}
-                className={`relative px-4 py-2 rounded-full text-sm font-medium transition-colors z-10 ${
-                  activeSection === item.id
-                    ? "text-background"
-                    : "text-foreground hover:text-primary"
-                }`}
-                whileHover={{
-                  scale: 1.05,
-                }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ duration: 0.6 }}
-              >
-                {activeSection === item.id && (
-                  <motion.div
-                    layoutId="activeNav"
-                    className="absolute inset-0 bg-primary rounded-full"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  />
-                )}
-
-                <span
-                  className={`relative z-10 py-2 transition-all duration-300 ${
-                    activeSection === item.id
-                      ? "text-teal-500 border-b-4 border-teal-500"
-                      : "inherit"
-                  }`}
-                >
-                  {item.label}
-                </span>
-              </motion.a>
-            ))}
-          </div>
 
           <motion.a
             href="/MdKaifResume.pdf"

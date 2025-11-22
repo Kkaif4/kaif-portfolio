@@ -1,17 +1,12 @@
 import { motion, useInView } from "framer-motion";
 import { Award, GraduationCap } from "lucide-react";
-import { useNavStore } from "@/store/navStore";
+
 import { useEffect, useRef } from "react";
 
 export const EducationPhilosophy = () => {
   // --- 1. HOOKS FOR SCROLLING NAVIGATION ---
-  const { setActiveSection } = useNavStore();
-  const ref = useRef(null);
-  const isInView = useInView(ref, { amount: 0.3 });
 
-  useEffect(() => {
-    if (isInView) setActiveSection("skills"); // Assuming this is 'skills' or a new ID
-  }, [isInView, setActiveSection]);
+  const ref = useRef(null);
 
   // --- 2. DEFINED COLORS FOR THE CARDS ---
   const eduColor = {
@@ -25,7 +20,7 @@ export const EducationPhilosophy = () => {
 
   return (
     // --- 3. ADDED 'ref' and 'id' ---
-    <section id="skills" ref={ref} className="py-20 px-6 scroll-mt-28">
+    <section id="skills" ref={ref} className="py-12 px-6 scroll-mt-28">
       <div className="container mx-auto">
         {/* --- 4. ADDED SECTION HEADER --- */}
         <motion.h2

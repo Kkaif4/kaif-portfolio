@@ -1,16 +1,9 @@
-import { useNavStore } from "@/store/navStore";
-import { useInView, motion } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
+import { useRef } from "react";
 import { Code2, Server, Database, Layers, Box, Container } from "lucide-react";
 
 export const Skills = () => {
-  const { setActiveSection } = useNavStore();
   const ref = useRef(null);
-  const isInView = useInView(ref, { amount: 0.2 });
-
-  useEffect(() => {
-    if (isInView) setActiveSection("skills");
-  }, [isInView, setActiveSection]);
 
   const dockerContainers = [
     {

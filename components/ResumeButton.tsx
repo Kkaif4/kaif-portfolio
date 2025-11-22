@@ -1,13 +1,10 @@
 import React from "react";
 import ResumeDownloadModal from "./ResumeDownloadModal";
-import { useToast } from "../hooks/use-toast";
-
 interface ResumeButtonProps {
   resumeUrl: string;
 }
 
 const ResumeButton: React.FC<ResumeButtonProps> = ({ resumeUrl }) => {
-  const { toast } = useToast();
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
 
@@ -27,13 +24,9 @@ const ResumeButton: React.FC<ResumeButtonProps> = ({ resumeUrl }) => {
   };
   React.useEffect(() => {
     if (error) {
-      toast({
-        title: "Error",
-        description: error,
-        variant: "destructive",
-      });
+      console.log(error);
     }
-  }, [error, toast]);
+  }, [error]);
 
   return (
     <ResumeDownloadModal onDownload={handleDownload}>
