@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { Canvas } from "@react-three/fiber";
 import { ParticleField } from "../PracticalFields";
@@ -24,6 +24,17 @@ export const Hero = () => {
   }, []);
 
   const [techNodes, setTechNodes] = useState(baseTechNodes);
+
+  // Memoize animation values to prevent recalculation on every render
+  const animationValues = useMemo(
+    () =>
+      baseTechNodes.map(() => ({
+        floatDistance: Math.random() * -10 - 4,
+        duration: Math.random() * 3 + 3,
+        delay: Math.random() * 1.2,
+      })),
+    []
+  );
 
   useEffect(() => {
     const shuffled = baseTechNodes.map((node) => ({
@@ -124,7 +135,7 @@ export const Hero = () => {
               opacity: isInView ? 1 : 0,
             }}
             transition={{
-              delay: Math.random() * 1.2,
+              delay: animationValues[i].delay,
               duration: 0.5,
               type: "spring",
               stiffness: 150,
@@ -132,11 +143,12 @@ export const Hero = () => {
           >
             <motion.div
               className="relative w-12 h-12 flex items-center justify-center rounded-full"
+              style={{ willChange: "transform" }}
               animate={{
-                y: [0, Math.random() * -10 - 4, 0],
+                y: [0, animationValues[i].floatDistance, 0],
               }}
               transition={{
-                duration: Math.random() * 3 + 3,
+                duration: animationValues[i].duration,
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
@@ -146,18 +158,20 @@ export const Hero = () => {
             >
               {/* Glow Background */}
               <div
-                className="absolute inset-0 rounded-full blur-xl transition-all duration-0"
+                className="absolute inset-0 rounded-full blur-xl transition-opacity duration-300"
                 style={{
                   backgroundColor: `${tech.color}55`,
                   filter: "blur(14px)",
                   opacity: 0.5,
+                  willChange: "opacity",
                 }}
               />
               <div
-                className="absolute inset-0 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-none"
+                className="absolute inset-0 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 style={{
                   backgroundColor: `${tech.color}AA`,
                   filter: "blur(20px)",
+                  willChange: "opacity",
                 }}
               />
 
@@ -173,10 +187,11 @@ export const Hero = () => {
               />
               {/* Tooltip (instant appearance) */}
               <div
-                className="absolute -bottom-8 left-1/2 -translate-x-1/2 px-2 py-1 rounded-md text-xs font-medium text-white whitespace-nowrap pointer-events-none opacity-0 group-hover:opacity-100 transition-none"
+                className="absolute -bottom-8 left-1/2 -translate-x-1/2 px-2 py-1 rounded-md text-xs font-medium text-white whitespace-nowrap pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200"
                 style={{
                   //   boxShadow: `0 0 10px ${tech.color}50`,
                   color: tech.color,
+                  willChange: "opacity",
                 }}
               >
                 {tech.name}
