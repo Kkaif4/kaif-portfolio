@@ -12,7 +12,7 @@ export const Hero = () => {
   const isInView = useInView(ref, { amount: 0.5 });
 
   const words = ["Mohammad", "Kaif", "Shaikh"];
-  const roles = ["Backend Craftsman", "AI Explorer", "Full-Stack Engineer"];
+  const roles = ["Backend Engineer", "AI Explorer", "Full-Stack Developer"];
   const [roleIndex, setRoleIndex] = useState(0);
 
   useEffect(() => {
@@ -105,8 +105,10 @@ export const Hero = () => {
           transition={{ delay: 1.2, duration: 0.8 }}
           className="text-lg md:text-xl text-muted-foreground max-w-md leading-relaxed"
         >
-          Building systems where creativity meets precision, scalable APIs,
-          elegant UIs, and intelligent applications that adapt and learn.
+          Backend Engineer with 1+ years building scalable RESTful APIs on
+          Node.js, NestJS & MongoDB. Hands-on with RAG pipelines, LLM
+          grounding, and Vector Embeddings — delivering 99.9% uptime and 40%
+          faster queries.
         </motion.p>
 
         {/* Social Icons */}

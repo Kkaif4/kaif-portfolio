@@ -67,17 +67,18 @@ export const EducationPhilosophy = () => {
             <div className="space-y-4">
               <div>
                 <h4 className="text-xl font-semibold">
-                  Bachelor of Computer Application
+                  Bachelor of Computer Application (BCA)
                 </h4>
                 <p className="font-medium" style={{ color: eduColor.hex }}>
-                  SRTMUN University, Latur, MH
+                  College of Computer Science and Information Technology
+                  (COCSIT), Latur
                 </p>
-                <p className="text-muted-foreground">May 2025</p>
+                <p className="text-muted-foreground">08/2022 – 03/2025</p>
                 <p
                   className="text-lg font-semibold mt-2"
-                  style={{ color: eduColor.hex }} // Using green for CGPA
+                  style={{ color: eduColor.hex }}
                 >
-                  CGPA: 8.89/10
+                  CGPA: 8.9/10
                 </p>
               </div>
             </div>

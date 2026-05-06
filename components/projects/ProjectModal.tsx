@@ -108,6 +108,39 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
               </span>
             ))}
           </motion.div>
+
+          {/* Bullet Points */}
+          {project.bullets && project.bullets.length > 0 && (
+            <motion.ul
+              variants={{
+                hidden: { opacity: 0 },
+                show: {
+                  opacity: 1,
+                  transition: { staggerChildren: 0.08, delayChildren: 0.3 },
+                },
+              }}
+              className="space-y-3 mb-2"
+            >
+              {project.bullets.map((bullet, idx) => (
+                <motion.li
+                  key={idx}
+                  variants={{
+                    hidden: { opacity: 0, x: -10 },
+                    show: { opacity: 1, x: 0 },
+                  }}
+                  className="flex items-start gap-2 text-sm text-muted-foreground"
+                >
+                  <span
+                    className="mt-0.5 shrink-0"
+                    style={{ color: project.color }}
+                  >
+                    ▹
+                  </span>
+                  <span>{bullet}</span>
+                </motion.li>
+              ))}
+            </motion.ul>
+          )}
         </motion.div>
 
         {/* --- FIX: New Action Buttons (GitHub, Demo, Close) at the bottom --- */}

@@ -44,7 +44,7 @@ export const Header = () => {
           </motion.div>
 
           <motion.a
-            href="/MdKaifResume.pdf"
+            href="/kaif-resume.pdf"
             download
             className={`px-8 py-4 bg-primary text-xl font-bold text-background rounded-full flex items-center gap-2 transition-shadow duration-300`}
             whileHover={{

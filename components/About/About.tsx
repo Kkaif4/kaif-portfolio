@@ -1,35 +1,42 @@
 import { useInView, motion } from "framer-motion";
-import { Database, Layers, Server } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { Database, Layers, Server, Shield } from "lucide-react";
+import { useRef } from "react";
 
 export const About = () => {
   const ref = useRef(null);
 
-  // --- 1. ADDED COLORS & SHADOWS (green, yellow, blue) ---
   const whyHireMe = [
     {
       icon: <Server className="w-8 h-8" />,
       title: "Backend Expertise",
       description:
-        "Proficient in Node.js, Express, and NestJS with focus on scalable REST APIs",
-      color: "#10b981", // Your --primary green
+        "Node.js, NestJS & Express APIs with 50 req/sec throughput, 99.5% uptime via Docker + CI/CD, and 40% query latency reduction through compound indexing.",
+      color: "#10b981",
       shadow: "rgba(16, 185, 129, 0.3)",
     },
     {
       icon: <Database className="w-8 h-8" />,
-      title: "Database Design",
+      title: "Database & Architecture",
       description:
-        "Expert in MongoDB schema architecture and query optimization",
-      color: "#f7b40f", // Your --secondary yellow
+        "MongoDB schema design with compound indexes (850ms → 320ms), DDD + TDD methodologies, idempotent API design, and Redis caching for auth overhead reduction (150ms → 10ms).",
+      color: "#f7b40f",
       shadow: "rgba(247, 180, 15, 0.3)",
     },
     {
       icon: <Layers className="w-8 h-8" />,
-      title: "Full-Stack Vision",
+      title: "AI & Full-Stack",
       description:
-        "Seamless integration of responsive React/Next.js frontends with robust backends",
-      color: "#3b82f6", // Complementary blue
+        "RAG pipelines with Gemini API + vector embeddings, LLM grounding for 25% accuracy gains, paired with React/Next.js/Angular frontends and real-time WebSocket sync.",
+      color: "#3b82f6",
       shadow: "rgba(59, 130, 246, 0.3)",
+    },
+    {
+      icon: <Shield className="w-8 h-8" />,
+      title: "Quality & Security",
+      description:
+        "JWT + RBAC across 20+ endpoints, 92% code coverage (120+ unit tests, 15 E2E tests), and CI/CD pipelines with <5 min runtime via GitHub Actions.",
+      color: "#8b5cf6",
+      shadow: "rgba(139, 92, 246, 0.3)",
     },
   ];
 
@@ -55,22 +62,25 @@ export const About = () => {
             className="space-y-4 text-lg text-muted-foreground leading-relaxed"
           >
             <p>
-              I'm a Full-Stack Developer with a backend focus, skilled in the
-              MERN and Nest.js ecosystems. I specialize in building scalable
-              APIs, responsive user interfaces, and AI-driven applications that
-              solve real-world problems.
+              I&apos;m a Backend Engineer with 1+ years of experience building
+              scalable RESTful APIs utilizing Node.js, NestJS, and modern
+              database technologies including MongoDB. My work spans System
+              Design, Microservices, API Versioning, and hands-on experience
+              with RAG pipelines, LLM grounding, and Vector Embeddings.
             </p>
             <p>
-              My experience spans database design, performance optimization, and
-              secure integrations. I'm committed to writing clean, maintainable
-              code and delivering high-performance, user-centric solutions that
-              exceed expectations.
+              I&apos;ve demonstrated success in Performance Optimization —
+              reducing query latency by 40% and maintaining 99.9% uptime through
+              CI/CD, TDD, and DDD principles. I enforce clean architecture with
+              OOP patterns and collaborative workflows using Git-based version
+              control.
             </p>
             <p>
-              Currently working at RH POSS, I've engineered high-performance
-              RESTful APIs, architected MongoDB schemas, and delivered
-              lightning-fast Next.js landing pages. My passion lies in creating
-              efficient, scalable systems that make a difference.
+              Currently freelancing as a Full Stack Developer, I build
+              Node.js/NestJS microservices handling 50 concurrent requests/sec,
+              optimize MongoDB with compound indexes, and implement JWT
+              authentication with Redis-based session caching — reducing auth
+              overhead from 150ms to 10ms per request.
             </p>
           </motion.div>
 
@@ -105,7 +115,6 @@ export const About = () => {
                     hidden: { opacity: 0, y: 20 },
                     show: { opacity: 1, y: 0 },
                   }}
-                  // --- 2. UPDATED DYNAMIC HOVER ---
                   initial={{ borderColor: "var(--border)" }}
                   whileHover={{
                     scale: 1.03,
@@ -119,11 +128,10 @@ export const About = () => {
                   style={{ transformStyle: "preserve-3d" }}
                 >
                   <div className="flex items-start gap-4">
-                    {/* --- 3. UPDATED DYNAMIC ICON --- */}
                     <div
                       className="p-3 rounded-lg"
                       style={{
-                        backgroundColor: item.color + "1A", // 10% opacity
+                        backgroundColor: item.color + "1A",
                         color: item.color,
                       }}
                     >
